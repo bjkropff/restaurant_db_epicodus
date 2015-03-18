@@ -20,11 +20,6 @@
             $this->food_type = $new_food_type;
         }
 
-        function setCuisineId($new_cuisine_id)
-        {
-            $this->cuisine_id = $new_cuisine_id;
-        }
-
         function getId()
         {
             return $this->id;
