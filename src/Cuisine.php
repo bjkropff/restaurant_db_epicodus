@@ -37,5 +37,38 @@
             $this->setId($result['id']);
         }
 
+        static function getAll()
+        {
+            $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisine;");
+
+            $cuisines = array();
+            foreach ($returned_cuisines as $cuisine) {
+                $id = $cuisine['id'];
+                $food_type = $cuisine['type_of_food'];  //LAST CHANGE
+                $new_cuisine = new Cuisine($id, $food_type);
+                array_push($cuisines, $new_cuisine);
+            }
+            return $cuisines;
+        }
+
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM cuisine *;");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 ?>
