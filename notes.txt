@@ -19,4 +19,6 @@ NOTES
 
 DB -> places_to_eat
     Table 1 - restaurants
+        $id, $name, $cuisine_id
     Table 2 - cuisine
+        $id, $type_of_food
