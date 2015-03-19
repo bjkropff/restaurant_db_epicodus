@@ -149,14 +149,11 @@
 
             //Act
             $test_Cuisine->delete();
-        
+
             //Assert
             $this->assertEquals([], Restaurant::getAll());
         }
 
-
-
     }
-
 
 ?>
