@@ -5,9 +5,11 @@
     <body>
         <h1>Welcome to Restaurant Finder!</h1>
 
+        <p>Input a cuisine:</p>
+
         <form action='/cuisines' method='post'>
-            <label for='cuisine'>Cuisine Type:</label>
-            <input type='text' name='cuisine' id='cuisine'>
+            <label for='food-type'>Cuisine Type:</label>
+            <input type='text' name='food-type' id='food-type'>
 
             <button name='submit'>Add</button>
 
@@ -20,11 +22,9 @@
                 <li><a href='/cuisines/{{ cuisine.getId }}'>{{ cuisine.getFoodType }}</a></li>
             {% endfor %}
         </ul>
-        <form action='/delete_cuisines' method='post'>
-            <button name='delete_cuisine'>Clear</button>
-        </form>
         {% else %}
             <p>There are no cuisines yet!</p>
         {% endif %}
+
     </body>
 </html>

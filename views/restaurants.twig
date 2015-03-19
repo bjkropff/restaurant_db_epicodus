@@ -3,7 +3,7 @@
         <title>Find restaurants</title>
     </head>
     <body>
-        <h1>Restaurants</h1>
+        <h1>{{ cuisine.getFoodType }}</h1>
 
         {% if restaurants is not empty %}
             <p>Here are all your Restaurants:</p>
@@ -12,17 +12,16 @@
                     <li>{{ restaurant.getName }}</li>
                 {% endfor %}
             </ul>
-
         {% endif %}
 
+        <h4>Add a restaurant</h4>
+
         <form action='/restaurants' method='post'>
+            <input id = "cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getId() }}">
             <label for='name'>Restaurant name</label>
             <input id='name' name='name' type='text'>
 
             <button type='submit'>Add Restaurant</button>
-        </form>
-        <form action='/delete_restaurants' method='post'>
-            <button name='submit'>Clear</button>
         </form>
 
         <p><a href='/'>Home</a></p>
