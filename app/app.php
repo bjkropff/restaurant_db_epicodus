@@ -14,6 +14,9 @@
         'twig.path' => __DIR__.'/../views'
     ));
 
+    use Symfony\Component\HttpFoundation\Request;
+    Request::enableHttpMethodParameterOverride();
+
     $app->get("/", function() use ($app){
         return $app['twig']->render('index.twig', array('cuisines'=>Cuisine::getAll()));
     });
@@ -50,6 +53,24 @@
         $cuisine = new Cuisine($id = null, $_POST['food-type']);
         $cuisine->save();
         return $app['twig']->render('index.twig', array('cuisine' => $cuisine, 'restaurants' => Restaurant::getAll(), 'cuisines' => Cuisine::getAll()));
+    });
+
+    $app->get("/cuisines/{id}/edit", function($id) use ($app){
+            $cuisine = Cuisine::find($id);
+            return $app['twig']->render('cuisine_edit.twig', array('cuisine' => $cuisine));
+    });
+
+    $app->patch("/cuisines/{id}", function($id) use ($app) {
+            $food_type = $_POST['food_type'];
+            $cuisine = Cuisine::find($id);
+            $cuisine->update($food_type);
+            return $app['twig']->render('restaurants.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->getRestaurants()));
+    });
+
+    $app->delete("/cuisines/{id}", function($id) use ($app) {
+        $cuisine = Cuisine::find($id);
+        $cuisine->delete();
+        return $app['twig']->render('index.twig', array('cuisines' => Cuisine::getAll()));
     });
 
     return $app;

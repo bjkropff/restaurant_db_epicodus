@@ -83,5 +83,17 @@
             return $restaurants;
         }
 
+        function update($new_cuisine)
+        {
+            $GLOBALS['DB']->exec("UPDATE cuisine SET type_of_food = '{$new_cuisine}' WHERE id = {$this->getId()};");
+            $this->setFoodType($new_cuisine);
+        }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM cuisine WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE category_id = {$this->getId()};");
+        }
+
     }
 ?>

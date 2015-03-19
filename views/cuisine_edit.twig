@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Update the {{ cuisine.getFoodType }} cuisine</h1>
+
+        <form action='/cuisines/{{ cuisine.getId }}' method='post'>
+            <input type='hidden' name='_method' value='patch'>
+
+            <label for='food_type'>rename your cuisine:</label>
+            <input type='text' name='food_type' id='food_type'>
+
+            <button type='submit'>Update</button>
+        </form>
+        <form action='/cuisines/{{ cuisine.getId }}' method='post'>
+            <input type='hidden' name='_method' value='delete'>
+
+            <button type='submit'>Delete this cuisine</button>
+        </form>
+    </body>
+</html>
